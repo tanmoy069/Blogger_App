@@ -6,6 +6,6 @@ import com.springboot.bloggerapp.domain.User;
 
 public interface UserDao extends CrudRepository<User, Integer> {
 	
-	User findUserByUsername(String username);
+	User findByUsername(String username);
 
 }
