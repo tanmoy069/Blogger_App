@@ -15,6 +15,10 @@ public class User {
 	private String password;
 	private int roleId;
 	private boolean isActive;
+	
+	public User() {
+		super();
+	}
 
 	public User(String username, String password, int roleId, boolean isActive) {
 		super();
