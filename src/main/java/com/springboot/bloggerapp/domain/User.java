@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 public class User {
 
@@ -23,7 +25,7 @@ public class User {
 	public User(String username, String password, int roleId, boolean isActive) {
 		super();
 		this.username = username;
-		this.password = password;
+		this.password = getBycrptPassword(password);
 		this.roleId = roleId;
 		this.isActive = isActive;
 	}
@@ -49,7 +51,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = getBycrptPassword(password);
 	}
 
 	public int getRoleId() {
@@ -72,6 +74,11 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", roleId=" + roleId
 				+ ", isActive=" + isActive + "]";
+	}
+	
+	private String getBycrptPassword(String password) {
+		BCryptPasswordEncoder bcryptPassword = new BCryptPasswordEncoder(12);
+		return bcryptPassword.encode(password);
 	}
 
 }
