@@ -19,5 +19,14 @@ public class UserService {
 	public User findUserByUsername(String username) {
 		return userDao.findByUsername(username);
 	}
+	
+	public boolean save(User user) {
+		try {
+			userDao.save(user);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
 
 }
