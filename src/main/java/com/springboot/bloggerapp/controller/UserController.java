@@ -41,10 +41,24 @@ public class UserController {
 		model.addAttribute("userDetails", currUser);
 		model.addAttribute("regiRequest", true);
 		
+		if(currUser.getRoleId() == 1) user.setActive(true);
+		
 		boolean isSave = userService.save(user);
 		if (isSave) model.addAttribute("successful", true);
 		else model.addAttribute("unsuccessful", true);
 		return "Registration";
 	}
+	
+	@GetMapping(value = "/update")
+	public String getUserList(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) return "Login";
+		User user = userService.findUserByUsername(auth.getName());
+		model.addAttribute("userDetails", user);
+		model.addAttribute("userList", userService.findAll());
+		return "UserList";
+	}
+	
+	
 
 }
