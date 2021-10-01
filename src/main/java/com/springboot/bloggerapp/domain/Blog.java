@@ -17,7 +17,7 @@ public class Blog {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int blogId;
 	private int userId;
-	private int completeApproval;
+	private boolean isCompleteApproval;
 	private int isApprove;
 	private String blogBody;
 	private Date createdDate;
@@ -29,7 +29,7 @@ public class Blog {
 	public Blog(int userId, int isApprove, String blogBody, Date createdDate) {
 		super();
 		this.userId = userId;
-		this.completeApproval = 0;
+		this.isCompleteApproval = false;
 		this.isApprove = isApprove;
 		this.blogBody = blogBody;
 		this.createdDate = Calendar.getInstance().getTime();
@@ -51,12 +51,12 @@ public class Blog {
 		this.userId = userId;
 	}
 
-	public int getCompleteApproval() {
-		return completeApproval;
+	public boolean isCompleteApproval() {
+		return isCompleteApproval;
 	}
 
-	public void setCompleteApproval(int completeApproval) {
-		this.completeApproval = completeApproval;
+	public void setCompleteApproval(boolean isCompleteApproval) {
+		this.isCompleteApproval = isCompleteApproval;
 	}
 
 	public int getIsApprove() {
@@ -85,7 +85,7 @@ public class Blog {
 
 	@Override
 	public String toString() {
-		return "Blog [blogId=" + blogId + ", userId=" + userId + ", completeApproval=" + completeApproval
+		return "Blog [blogId=" + blogId + ", userId=" + userId + ", isCompleteApproval=" + isCompleteApproval
 				+ ", isApprove=" + isApprove + ", blogBody=" + blogBody + ", createdDate=" + createdDate + "]";
 	}
 
