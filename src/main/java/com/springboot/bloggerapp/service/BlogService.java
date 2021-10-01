@@ -32,7 +32,7 @@ public class BlogService extends AbstractService<Blog> {
 	public boolean save(Blog obj) {
 		try {
 			blogDao.save(obj);
-			LOGGER.info("Successfully post blog of userid : " + obj.getUserId());
+			LOGGER.info("Successfully post blog of userid : " + obj.getUsername());
 			return true;
 		} catch (Exception e) {
 			LOGGER.info("Failed to post");

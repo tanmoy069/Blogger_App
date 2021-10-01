@@ -16,7 +16,7 @@ public class Blog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int blogId;
-	private int userId;
+	private String username;
 	private boolean isCompleteApproval;
 	private int isApprove;
 	private String blogBody;
@@ -26,9 +26,9 @@ public class Blog {
 		super();
 	}
 
-	public Blog(int userId, int isApprove, String blogBody, Date createdDate) {
+	public Blog(String username, int isApprove, String blogBody, Date createdDate) {
 		super();
-		this.userId = userId;
+		this.username = username;
 		this.isCompleteApproval = false;
 		this.isApprove = isApprove;
 		this.blogBody = blogBody;
@@ -43,12 +43,12 @@ public class Blog {
 		this.blogId = blogId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public boolean isCompleteApproval() {
@@ -85,7 +85,7 @@ public class Blog {
 
 	@Override
 	public String toString() {
-		return "Blog [blogId=" + blogId + ", userId=" + userId + ", isCompleteApproval=" + isCompleteApproval
+		return "Blog [blogId=" + blogId + ", u=" + username + ", isCompleteApproval=" + isCompleteApproval
 				+ ", isApprove=" + isApprove + ", blogBody=" + blogBody + ", createdDate=" + createdDate + "]";
 	}
 
