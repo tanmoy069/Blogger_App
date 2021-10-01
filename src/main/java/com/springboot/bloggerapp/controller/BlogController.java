@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.bloggerapp.domain.Blog;
 import com.springboot.bloggerapp.domain.User;
@@ -56,5 +57,28 @@ public class BlogController {
 		model.addAttribute("blogList", blogService.findAllWaitingForApprovalBlogs());
 		return "ApproveBlogs";
 	}
+	
+	@GetMapping(value="/blog/approve")
+	public String setApproveBlog(Model model, @RequestParam(name="blogId", required = true) int blogId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) return "Login";
+		Blog blog = blogService.findById(blogId);
+		blog.setIsApprove(true);
+		blog.setCompleteApproval(true);
+		blogService.update(blog);
+		return "redirect:/blog/approvalList";
+	}
+	
+	@GetMapping(value="/blog/denied")
+	public String setDeniedBlog(Model model, @RequestParam(name="blogId", required = true) int blogId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) return "Login";
+		Blog blog = blogService.findById(blogId);
+		blog.setIsApprove(false);
+		blog.setCompleteApproval(true);
+		blogService.update(blog);
+		return "redirect:/blog/approvalList";
+	}
+
 
 }
