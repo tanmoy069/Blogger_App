@@ -22,7 +22,7 @@ public class User {
 		super();
 	}
 
-	public User(String username, String password, int roleId, boolean isActive) {
+	public User(String username, String password, int roleId) {
 		super();
 		this.username = username;
 		this.password = getBycrptPassword(password);
@@ -68,6 +68,14 @@ public class User {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	
+	public String getRole() {
+		return roleId == 1 ? "Admin" : "Blogger";
+	}
+	
+	public String getStatus() {
+		return isActive ? "Active" : "Deactivate";
 	}
 
 	@Override
