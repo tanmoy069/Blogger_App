@@ -41,7 +41,10 @@ public class UserController {
 		model.addAttribute("userDetails", currUser);
 		model.addAttribute("regiRequest", true);
 		
-		if(currUser.getRoleId() == 1) user.setActive(true);
+		if(currUser.getRoleId() == 1) {
+			user.setActive(true);
+			user.setCompleteApproval(1);
+		}
 		
 		boolean isSave = userService.save(user);
 		if (isSave) model.addAttribute("successful", true);
