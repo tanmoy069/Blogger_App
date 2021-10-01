@@ -29,22 +29,7 @@ public class BloggerAppController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth.isAuthenticated()) auth.setAuthenticated(false);
 		return "Login";
-	}
-
-	@GetMapping(value = "/registration")
-	public String getRegistrationFrom() {
-		return "Registration";
-	}
-	
-	@PostMapping(value = "/registration")
-	public String submitRegistration(Model model, @ModelAttribute("userRegiForm") User user) {
-		System.out.println(user.toString());
-		model.addAttribute("regiRequest", true);
-		boolean isSave = userService.save(user);
-		if (isSave) model.addAttribute("successful", true);
-		else model.addAttribute("unsuccessful", true);
-		return "Registration";
-	}
+	}	
 
 	private void setDefaultUser() {
 		User user = new User("admin", "1234", 1, true);
