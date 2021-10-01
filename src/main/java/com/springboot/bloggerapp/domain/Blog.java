@@ -18,7 +18,7 @@ public class Blog {
 	private int blogId;
 	private String username;
 	private boolean isCompleteApproval;
-	private int isApprove;
+	private boolean isApprove;
 	private String blogBody;
 	private Date createdDate;
 
@@ -26,7 +26,7 @@ public class Blog {
 		super();
 	}
 
-	public Blog(String username, int isApprove, String blogBody, Date createdDate) {
+	public Blog(String username, boolean isApprove, String blogBody, Date createdDate) {
 		super();
 		this.username = username;
 		this.isCompleteApproval = false;
@@ -59,11 +59,11 @@ public class Blog {
 		this.isCompleteApproval = isCompleteApproval;
 	}
 
-	public int getIsApprove() {
+	public boolean isApprove() {
 		return isApprove;
 	}
 
-	public void setIsApprove(int isApprove) {
+	public void setIsApprove(boolean isApprove) {
 		this.isApprove = isApprove;
 	}
 
