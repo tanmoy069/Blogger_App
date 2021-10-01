@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.bloggerapp.domain.User;
 import com.springboot.bloggerapp.service.UserService;
 
+
 /**
  * Implementation of UserDetailsService class of spring security core interface
  * which loads user-specific data
@@ -41,14 +42,14 @@ public class UserDetailsServiceImplements implements UserDetailsService {
 	}
 
 	private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true,
-				true, true, true, authorities);
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true, true,
+				true, true, authorities);
 	}
 
 	private List<GrantedAuthority> getUserAuthority() {
 		Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
 		roles.add(new SimpleGrantedAuthority("admin"));
-		roles.add(new SimpleGrantedAuthority("blogger"));
+		roles.add(new SimpleGrantedAuthority("user"));
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
 		return grantedAuthorities;
 	}
