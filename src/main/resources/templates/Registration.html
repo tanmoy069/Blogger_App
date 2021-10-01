@@ -8,13 +8,7 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-	html,
-	body,
-	h1,
-	h2,
-	h3,
-	h4,
-	h5 {
+	html,	body,	h1,	h2,	h3,	h4,h5 {
 		font-family: "Open Sans", sans-serif
 	}
 
@@ -44,13 +38,9 @@
 				<button class="w3-button w3-padding-large" title="Account"><i class="fa fa-user"></i> <span
 						th:text="${userDetails.getUsername()}"></span></button>
 				<div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:150px">
-					<a th:if="${userDetails.getRoleId()!=1}" href="/user/profile"
-						class="w3-bar-item w3-button">Profile</a>
 					<a href="/user/registration" class="w3-bar-item w3-button">User Registration</a>
-					<a th:if="${userDetails.getRoleId()==1}" href="/user/update"
-						class="w3-bar-item w3-button">Active/Deactive Account</a>
-					<a th:if="${userDetails.getRoleId()==1}" href="/blog/approvalList" class="w3-bar-item w3-button">Approve
-						Blog's'</a>
+					<a th:if="${userDetails.getRoleId()==1}" href="/user/update" class="w3-bar-item w3-button">Active/Deactive Account</a>
+					<a th:if="${userDetails.getRoleId()==1}" href="/blog/approvalList" class="w3-bar-item w3-button">Approve Blog's'</a>
 					<a href="/blog/delete" class="w3-bar-item w3-button">Delete Blogs</a>
 					<a href="/login" class="w3-bar-item w3-button">Logout</a>
 				</div>

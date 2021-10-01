@@ -30,7 +30,6 @@ footer{
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Account"><i class="fa fa-user"></i> <span th:text="${userDetails.getUsername()}"></span></button>
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:150px">
-      <a th:if="${userDetails.getRoleId()!=1}" href="/user/profile" class="w3-bar-item w3-button">Profile</a>
       <a href="/user/registration" class="w3-bar-item w3-button">User Registration</a>
       <a th:if="${userDetails.getRoleId()==1}" href="/user/update" class="w3-bar-item w3-button">Active/Deactive Account</a>
       <a th:if="${userDetails.getRoleId()==1}" href="/blog/approvalList" class="w3-bar-item w3-button">Approve Blog's'</a>
@@ -72,7 +71,7 @@ footer{
 	      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
 	      	<a th:href="@{/blog/approve/(blogId=${blog.getBlogId()})}" class="w3-right w3-opacity"> Approved </a>
 	      	<a class="w3-right w3-opacity">&nbsp;&nbsp;</a>
-	      	<a th:href="@{/user/denied/(blogId=${blog.getBlogId()})}" class="w3-right w3-opacity"> Denied </a>
+	      	<a th:href="@{/blog/denied/(blogId=${blog.getBlogId()})}" class="w3-right w3-opacity"> Denied </a>
 	      	<a class="w3-right w3-opacity">&nbsp;&nbsp;</a> 
 			<h4><i class="fa fa-user"></i> <span th:text="${blog.getUsername()}"></span></h4>
 			<p><span th:text="${blog.getBlogBody()}"> </span>	 
