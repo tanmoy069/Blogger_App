@@ -54,12 +54,34 @@ public class BlogService extends AbstractService<Blog> {
 
 	@Override
 	public boolean update(Blog obj) {
-		return false;
+		try {
+			if(findById(obj.getBlogId()) != null) {
+				blogDao.save(obj);
+				LOGGER.info("Successfully updated blog: " + obj.getBlogId());
+				return true;
+			}
+			LOGGER.info("Unable to update blog, blog doesn't exists");
+			return false;
+		} catch(Exception e) {
+			LOGGER.info("Failed to update blog");
+			return false;
+		}
 	}
 
 	@Override
 	public boolean deleteById(int id) {
-		return false;
+		try {
+			if(findById(id) != null) {
+				blogDao.deleteById(id);
+				LOGGER.info("Successfully deleted blog: " + id);
+				return true;
+			}
+			LOGGER.info("Unable to delete blog, blog doesn't exists");
+			return false;
+		} catch(Exception e) {
+			LOGGER.info("Failed to delete blog");
+			return false;
+		}
 	}
 
 }
