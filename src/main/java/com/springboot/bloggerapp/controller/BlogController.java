@@ -30,7 +30,7 @@ public class BlogController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(!auth.isAuthenticated()) return "Login";
 		User user = userService.findUserByUsername(auth.getName());
-		model.addAttribute("blogList", blogService.findAll());
+		model.addAttribute("blogList", blogService.findAllApproveBlogs());
 		model.addAttribute("userDetails", user);
 		return "Home";
 	}
@@ -46,6 +46,15 @@ public class BlogController {
 		blogService.save(blog);
 		return "redirect:/home";
 	}
-
+	
+	@GetMapping(value="/blog/approvalList")
+	public String getApproveList(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) return "Login";
+		User user = userService.findUserByUsername(auth.getName());
+		model.addAttribute("userDetails", user);
+		model.addAttribute("blogList", blogService.findAllWaitingForApprovalBlogs());
+		return "ApproveBlogs";
+	}
 
 }
