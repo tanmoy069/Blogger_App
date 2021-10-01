@@ -27,7 +27,7 @@ public class User {
 		this.username = username;
 		this.password = getBycrptPassword(password);
 		this.roleId = roleId;
-		this.isActive = isActive;
+		this.isActive = true;
 	}
 
 	public int getUserId() {
