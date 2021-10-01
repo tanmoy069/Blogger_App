@@ -4,10 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
+@Table(name = "User", uniqueConstraints = @UniqueConstraint(columnNames = { "username"}))
 public class User {
 
 	@Id
@@ -15,9 +18,9 @@ public class User {
 	private int userId;
 	private String username;
 	private String password;
-	private int completeApproval;
 	private int roleId;
 	private boolean isActive;
+	private boolean isCompleteApproval;
 	
 	public User() {
 		super();
@@ -29,7 +32,7 @@ public class User {
 		this.password = getBycrptPassword(password);
 		this.roleId = roleId;
 		this.isActive = true;
-		this.completeApproval = roleId == 1 ? 1 : 0;
+		this.isCompleteApproval = roleId == 1 ? true : false;
 	}
 
 	public int getUserId() {
@@ -64,12 +67,12 @@ public class User {
 		this.roleId = roleId;
 	}
 	
-	public int getCompleteApproval() {
-		return completeApproval;
+	public boolean isCompleteApproval() {
+		return isCompleteApproval;
 	}
 
-	public void setCompleteApproval(int completeApproval) {
-		this.completeApproval = completeApproval;
+	public void setCompleteApproval(boolean isCompleteApproval) {
+		this.isCompleteApproval = isCompleteApproval;
 	}
 
 	public boolean isActive() {
@@ -87,13 +90,17 @@ public class User {
 	public String getStatus() {
 		return isActive ? "Active" : "Deactivate";
 	}
+	
+	public String getApprovalStatus() {
+		return isCompleteApproval ? "Approval Completed" : "Approval Not Completed";
+	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", roleId=" + roleId
-				+ ", isActive=" + isActive + "]";
+				+ ", isActive=" + isActive + ", isCompleteApproval=" + isCompleteApproval + "]";
 	}
-	
+
 	private String getBycrptPassword(String password) {
 		BCryptPasswordEncoder bcryptPassword = new BCryptPasswordEncoder(12);
 		return bcryptPassword.encode(password);
