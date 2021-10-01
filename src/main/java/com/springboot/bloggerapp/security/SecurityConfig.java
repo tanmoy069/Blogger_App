@@ -3,29 +3,26 @@ package com.springboot.bloggerapp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+//	@Autowired
+//	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
 	@Autowired
 	private UserDetailsService userService;
 	
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
+//	@Autowired
+//	private JwtRequestFilter jwtRequestFilter;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {		
@@ -38,16 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-	    return super.authenticationManagerBean();
-	}
+//	@Bean
+//	@Override
+//	public AuthenticationManager authenticationManagerBean() throws Exception {
+//	    return super.authenticationManagerBean();
+//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.csrf().disable()
+/*		http.csrf().disable()
 		// don't authenticate this particular request
 		.authorizeRequests().antMatchers("/authenticate").permitAll().
 		// all other requests need to be authenticated
@@ -58,6 +55,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Add a filter to validate the tokens with every request
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		*/
+		
+		http.authorizeRequests()
+//		.antMatchers("/user").permitAll()
+				.antMatchers("/**").hasAuthority("admin")
+				.antMatchers("/**").hasAuthority("user")
+				.and().formLogin().loginPage("/login").permitAll()
+				.defaultSuccessUrl("/home")
+				.usernameParameter("username").passwordParameter("password")
+				.and().logout().logoutSuccessUrl("/login");
 		
 	}
 
