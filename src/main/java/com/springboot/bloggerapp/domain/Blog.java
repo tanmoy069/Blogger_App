@@ -12,15 +12,16 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Blog {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int blogId;
 	private int userId;
+	private int completeApproval;
 	private int isApprove;
 	private String blogBody;
 	private Date createdDate;
-	
+
 	public Blog() {
 		super();
 	}
@@ -28,6 +29,7 @@ public class Blog {
 	public Blog(int userId, int isApprove, String blogBody, Date createdDate) {
 		super();
 		this.userId = userId;
+		this.completeApproval = 0;
 		this.isApprove = isApprove;
 		this.blogBody = blogBody;
 		this.createdDate = Calendar.getInstance().getTime();
@@ -47,6 +49,14 @@ public class Blog {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public int getCompleteApproval() {
+		return completeApproval;
+	}
+
+	public void setCompleteApproval(int completeApproval) {
+		this.completeApproval = completeApproval;
 	}
 
 	public int getIsApprove() {
@@ -75,8 +85,8 @@ public class Blog {
 
 	@Override
 	public String toString() {
-		return "Blog [blogId=" + blogId + ", userId=" + userId + ", isApprove=" + isApprove + ", blogBody=" + blogBody
-				+ ", createdDate=" + createdDate + "]";
+		return "Blog [blogId=" + blogId + ", userId=" + userId + ", completeApproval=" + completeApproval
+				+ ", isApprove=" + isApprove + ", blogBody=" + blogBody + ", createdDate=" + createdDate + "]";
 	}
-	
+
 }
