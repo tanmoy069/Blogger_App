@@ -27,6 +27,18 @@ public class BlogService extends AbstractService<Blog> {
 	public List<Blog> findAll() {
 		return blogDao.findAll();
 	}
+	
+	public List<Blog> findAllByUsername(String username) {
+		return blogDao.findByUsername(username);
+	}
+	
+	public List<Blog> findAllApproveBlogs() {
+		return blogDao.findByIsApprove(true);
+	}
+	
+	public List<Blog> findAllWaitingForApprovalBlogs() {
+		return blogDao.findByIsCompleteApproval(false);
+	}	
 
 	@Override
 	public boolean save(Blog obj) {
