@@ -63,7 +63,7 @@ footer{
     
     <!-- Middle Column -->
     <div class="w3-col m7">
-      <div class="w3-row-padding">
+      <div th:if="${userDetails.getRoleId()!=1}" class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
@@ -84,7 +84,7 @@ footer{
       	  <tr th:each="blog : ${blogList}">
 	      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
 			<span class="w3-right w3-opacity"><span th:text="${blog.getCreatedDate()}"></span></span>
-			<h4><i class="fa fa-user"></i> <span th:text="${blog.getUserId()}"></span></h4>
+			<h4><i class="fa fa-user"></i> <span th:text="${blog.getUsername()}"></span></h4>
 			<hr class="w3-clear">
 			<p><span th:text="${blog.getBlogBody()}"></span></p>
 			<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
