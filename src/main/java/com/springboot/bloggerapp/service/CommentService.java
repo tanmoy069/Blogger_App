@@ -3,10 +3,12 @@ package com.springboot.bloggerapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springboot.bloggerapp.dao.CommentDao;
 import com.springboot.bloggerapp.domain.Comment;
 
+@Service
 public class CommentService extends AbstractService<Comment> {
 	
 	private CommentDao commentDao; 

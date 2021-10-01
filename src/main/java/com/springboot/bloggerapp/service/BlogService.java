@@ -3,10 +3,12 @@ package com.springboot.bloggerapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springboot.bloggerapp.dao.BlogDao;
 import com.springboot.bloggerapp.domain.Blog;
 
+@Service
 public class BlogService extends AbstractService<Blog> {
 
 	private BlogDao blogDao;
