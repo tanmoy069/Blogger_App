@@ -15,6 +15,7 @@ public class User {
 	private int userId;
 	private String username;
 	private String password;
+	private int completeApproval;
 	private int roleId;
 	private boolean isActive;
 	
@@ -28,6 +29,7 @@ public class User {
 		this.password = getBycrptPassword(password);
 		this.roleId = roleId;
 		this.isActive = true;
+		this.completeApproval = roleId == 1 ? 1 : 0;
 	}
 
 	public int getUserId() {
@@ -60,6 +62,14 @@ public class User {
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+	
+	public int getCompleteApproval() {
+		return completeApproval;
+	}
+
+	public void setCompleteApproval(int completeApproval) {
+		this.completeApproval = completeApproval;
 	}
 
 	public boolean isActive() {
