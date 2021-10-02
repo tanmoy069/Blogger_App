@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+#statusBody{
+	width:100%;
+	display: inline-block;
+}
+footer{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+}
+</style>
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Account"><i class="fa fa-user"></i> <span th:text="${userDetails.getUsername()}"></span></button>
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:150px">
+      <a href="/user/registration" class="w3-bar-item w3-button">User Registration</a>
+      <a th:if="${userDetails.getRoleId()==1}" href="/user/update" class="w3-bar-item w3-button">Active/Deactive Account</a>
+      <a th:if="${userDetails.getRoleId()==1}" href="/blog/approvalList" class="w3-bar-item w3-button">Approve Blog's'</a>
+      <a href="/blog/deleteList" class="w3-bar-item w3-button">Delete Blogs</a>
+      <a href="/login" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="/home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+  <a href="/user/profile" class="w3-bar-item w3-button w3-padding-large">Profile</a>
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large">Logout</a>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <br>
+         
+     
+    
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+    	  
+ 	<h3>Blog Delete List </h3>
+ 	
+      <table>
+      	<tbody>
+      	  <tr th:each="blog : ${blogList}">
+	      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+	      	<a th:href="@{/blog/delete/(blogId=${blog.getBlogId()})}" class="w3-right w3-opacity"> Delete </a> 
+			<h4><i class="fa fa-user"></i> <span th:text="${blog.getUsername()}"></span></h4>
+			<p><span th:text="${blog.getBlogBody()}"> </span>	 
+			</span></p> 
+			
+	      </div>
+	  </tr>
+	  <tr th:if="${blogList.size()==0}" align="center">
+		<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+			<h5>No blog post available to delete</h5>
+		</div>
+       </tr>
+	</tbody>
+      </table>
+
+          
+    <!-- End Middle Column -->
+    </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+           
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+
+<footer class="w3-container w3-theme-d5">
+  <div class="w3-container w3-theme-l1">
+	<p>	Powered by <a href="https://github.com/tanmoy069" target="_blank">git.tanmoy</a></p>
+  </div>
+</footer>
+ 
+<script>
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html> 
+
