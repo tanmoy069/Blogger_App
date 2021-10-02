@@ -65,14 +65,24 @@ footer{
     	  
  	<h3> Add your comments under selected blog</h3>
  	
- 		<form th:action="@{/blog/comments/by}" th:object="${commentAddForm}" method="post">
+ 		<form th:action="@{/blog/comments/by/(blogId=${blog.getBlogId()})}" th:object="${commentAddForm}" method="post">
 	      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-			<h4><i class="fa fa-user"></i> <span th:text="${blog.getUsername()}"></span></h4>
+			<h4><i class="fa fa-user"></i> <span id="username" th:text="${blog.getUsername()}"></span></h4>
 			<p><span th:text="${blog.getBlogBody()}"> </span>	 
 			<hr class="w3-clear">
-			<input type="text" class="w3-border w3-padding" id="commentBody" name="commentBody" value="" required>			
-			</span></p> 
-			<button type="Comment" class="w3-button w3-theme"><i class="fa fa-pencil"></i>   </button>
+			<table>
+		      	<tbody>
+		      	  <tr th:each="comment : ${commentList}">
+			      <div class="w3-container w3-card w3-white w3-round w3-margin"><br> 
+					<p><b><span th:text="${comment.getUsername()}"></span></b> <span th:text="${comment.getCommentBody()}"> </span>	 
+					</span></p>			
+			      </div>
+			  </tr>
+			 </tbody>
+      		</table>
+      		</span></p>
+      		<input type="text" class="w3-border w3-padding" id="commentBody" name="commentBody" value="" required>
+			<button type="Comment" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Comment </button>
 			</span></p> 			
 	      </div>
  		</form>
