@@ -22,6 +22,10 @@ public class CommentService extends AbstractService<Comment> {
 	public Comment findById(int id) {
 		return commentDao.findByCommentId(id);
 	}
+	
+	public List<Comment> findByBlogId(int blogId){
+		return commentDao.findByBlogId(blogId);
+	}
 
 	@Override
 	public List<Comment> findAll() {
