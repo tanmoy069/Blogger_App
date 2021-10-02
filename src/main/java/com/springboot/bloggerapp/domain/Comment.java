@@ -23,7 +23,7 @@ public class Comment {
 		super();
 	}
 
-	public Comment(String username, int blogId, String commentBody, Date createdDate) {
+	public Comment(String username, int blogId, String commentBody) {
 		super();
 		this.username = username;
 		this.blogId = blogId;
