@@ -14,7 +14,7 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int commentId;
-	private int userId;
+	private String username;
 	private int blogId;
 	private String commentBody;
 	private Date createdDate;
@@ -23,9 +23,9 @@ public class Comment {
 		super();
 	}
 
-	public Comment(int userId, int blogId, String commentBody, Date createdDate) {
+	public Comment(String username, int blogId, String commentBody, Date createdDate) {
 		super();
-		this.userId = userId;
+		this.username = username;
 		this.blogId = blogId;
 		this.commentBody = commentBody;
 		this.createdDate = Calendar.getInstance().getTime();
@@ -39,12 +39,12 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getBlogId() {
@@ -73,7 +73,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", userId=" + userId + ", blogId=" + blogId + ", commentBody="
+		return "Comment [commentId=" + commentId + ", username=" + username + ", blogId=" + blogId + ", commentBody="
 				+ commentBody + ", createdDate=" + createdDate + "]";
 	}
 
