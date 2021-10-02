@@ -93,6 +93,14 @@ public class BlogController {
 		}
 		return "DeleteBlogList";
 	}
+	
+	@GetMapping(value="/blog/delete")
+	public String setDeleteBlog(Model model, @RequestParam(name="blogId", required = true) int blogId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) return "Login";
+		blogService.deleteById(blogId);
+		return "redirect:/blog/deleteList";
+	}
 
 
 }
