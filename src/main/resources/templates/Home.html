@@ -87,7 +87,9 @@ footer{
 			<hr class="w3-clear">
 			<p><span th:text="${blog.getBlogBody()}"></span></p>
 			<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-			<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+			<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" 
+			th:onclick="'window.location.href = \'' + @{/blog/comments/by/(blogId=${blog.getBlogId()})} + '\''">
+			<i class="fa fa-comment"></i>  Comment</button> 
 	      </div>
 	  </tr>
 	  <tr th:if="${blogList.size()==0}" align="center">
