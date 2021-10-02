@@ -79,6 +79,20 @@ public class BlogController {
 		blogService.update(blog);
 		return "redirect:/blog/approvalList";
 	}
+	
+	@GetMapping(value="/blog/deleteList")
+	public String getDeleteBlogList(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) return "Login";
+		User user = userService.findUserByUsername(auth.getName());
+		model.addAttribute("userDetails", user);
+		if(user.getRoleId()==1) {
+			model.addAttribute("blogList", blogService.findAllApproveBlogs());
+		} else {
+			model.addAttribute("blogList", blogService.findAllByUsername(user.getUsername()));
+		}
+		return "DeleteBlogList";
+	}
 
 
 }
