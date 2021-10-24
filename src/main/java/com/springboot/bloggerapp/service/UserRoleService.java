@@ -27,8 +27,15 @@ public class UserRoleService extends AbstractService<UserRole>{
 
 	@Override
 	public boolean save(UserRole obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if(findById(obj.getRoleId()) == null) {
+				userRoleDao.save(obj);
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
