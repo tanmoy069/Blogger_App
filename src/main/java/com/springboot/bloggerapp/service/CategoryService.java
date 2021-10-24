@@ -44,14 +44,20 @@ public class CategoryService extends AbstractService<Category>{
 
 	@Override
 	public boolean update(Category obj) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean deleteById(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if(findById(id) != null) {
+				catDao.deleteById(id);
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }
