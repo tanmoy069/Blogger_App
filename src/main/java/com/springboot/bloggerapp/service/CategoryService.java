@@ -29,7 +29,7 @@ public class CategoryService extends AbstractService<Category>{
 	@Override
 	public boolean save(Category obj) {
 		try {
-			if(findById(obj.getId()) != null) {
+			if(findById(obj.getId()) == null) {
 				catDao.save(obj);
 				LOGGER.info("Successfully added Category");
 				return true;
