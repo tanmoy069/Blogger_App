@@ -30,10 +30,13 @@ public class UserRoleService extends AbstractService<UserRole>{
 		try {
 			if(findById(obj.getRoleId()) == null) {
 				userRoleDao.save(obj);
+				LOGGER.info("Successfully added UserRole");
 				return true;
 			}
+			LOGGER.info("UserRole already exists");
 			return false;
 		} catch (Exception e) {
+			LOGGER.info("Failed to add UserRole");
 			return false;
 		}
 	}
