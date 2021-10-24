@@ -19,6 +19,7 @@ public class Blog {
 	private String username;
 	private boolean isCompleteApproval;
 	private boolean isApprove;
+	private int categoryId;
 	private String blogBody;
 	private Date createdDate;
 
@@ -26,11 +27,12 @@ public class Blog {
 		super();
 	}
 
-	public Blog(String username, boolean isApprove, String blogBody, Date createdDate) {
+	public Blog(String username, boolean isApprove, int categoryId, String blogBody, Date createdDate) {
 		super();
 		this.username = username;
 		this.isCompleteApproval = false;
 		this.isApprove = isApprove;
+		this.categoryId = categoryId;
 		this.blogBody = blogBody;
 		this.createdDate = Calendar.getInstance().getTime();
 	}
@@ -67,6 +69,14 @@ public class Blog {
 		this.isApprove = isApprove;
 	}
 
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryIid(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public String getBlogBody() {
 		return blogBody;
 	}
@@ -85,8 +95,9 @@ public class Blog {
 
 	@Override
 	public String toString() {
-		return "Blog [blogId=" + blogId + ", u=" + username + ", isCompleteApproval=" + isCompleteApproval
-				+ ", isApprove=" + isApprove + ", blogBody=" + blogBody + ", createdDate=" + createdDate + "]";
+		return "Blog [blogId=" + blogId + ", username=" + username + ", isCompleteApproval=" + isCompleteApproval
+				+ ", isApprove=" + isApprove + ", categoryId=" + categoryId + ", blogBody=" + blogBody
+				+ ", createdDate=" + createdDate + "]";
 	}
 
 }
