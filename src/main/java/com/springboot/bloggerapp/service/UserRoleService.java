@@ -59,7 +59,18 @@ public class UserRoleService extends AbstractService<UserRole>{
 
 	@Override
 	public boolean deleteById(int id) {
-		return false;
+		try {
+			if(findById(id) != null) {
+				userRoleDao.deleteById(id);;
+				LOGGER.info("Successfully deleted UserRole");
+				return true;
+			}
+			LOGGER.info("UserRole doesn't exists");
+			return false;
+		} catch (Exception e) {
+			LOGGER.info("Failed to delete UserRole");
+			return false;
+		}
 	}
 
 	
