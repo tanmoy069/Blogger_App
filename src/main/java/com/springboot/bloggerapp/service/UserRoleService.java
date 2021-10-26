@@ -43,13 +43,22 @@ public class UserRoleService extends AbstractService<UserRole>{
 
 	@Override
 	public boolean update(UserRole obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if(findById(obj.getRoleId()) != null) {
+				userRoleDao.save(obj);
+				LOGGER.info("Successfully updated UserRole");
+				return true;
+			}
+			LOGGER.info("UserRole doesn't exists");
+			return false;
+		} catch (Exception e) {
+			LOGGER.info("Failed to update UserRole");
+			return false;
+		}
 	}
 
 	@Override
 	public boolean deleteById(int id) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
