@@ -46,8 +46,18 @@ public class CommentService extends AbstractService<Comment> {
 
 	@Override
 	public boolean update(Comment obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if(findById(obj.getCommentId()) != null) {
+				commentDao.save(obj);
+				LOGGER.info("Successfully updated comment of blogid : " + obj.getBlogId());
+				return true;
+			}
+			LOGGER.info("Comment doesn't exist");
+			return false;
+		} catch (Exception e) {
+			LOGGER.info("Failed to update comment");
+			return false;
+		}
 	}
 
 	@Override
