@@ -62,8 +62,18 @@ public class CommentService extends AbstractService<Comment> {
 
 	@Override
 	public boolean deleteById(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if(findById(id) != null) {
+				commentDao.deleteById(id);
+				LOGGER.info("Successfully deleted comment of commentId: " + id);
+				return true;
+			}
+			LOGGER.info("Comment doesn't exist");
+			return false;
+		} catch (Exception e) {
+			LOGGER.info("Failed to delete comment");
+			return false;
+		}
 	}
 
 }
