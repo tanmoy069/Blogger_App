@@ -46,7 +46,7 @@ public class CommentController {
 	}
 	
 	@PostMapping("/by")
-	public String getBlogToComment(Model model,	@ModelAttribute("commentAddForm") Comment comment,
+	public String addCommentToBlog(Model model,	@ModelAttribute("commentAddForm") Comment comment,
 			@RequestParam(name = "blogId", required = true) int blogId) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!auth.isAuthenticated()) return "Login";
