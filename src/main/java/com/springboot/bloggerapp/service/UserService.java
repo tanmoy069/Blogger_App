@@ -29,6 +29,7 @@ public class UserService extends AbstractService<User>{
 			LOGGER.info("Successfully save username: " + user.getUsername());
 			return true;
 		} catch(Exception e) {
+			LOGGER.info("Failed to save username: " + user.getUsername());
 			return false;
 		}
 	}
